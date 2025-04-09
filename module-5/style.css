@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+body {
+	background-color: lightblue; 
+	font-size:10pt;
+}
+
+h1 {
+	font-size: 20pt;
+}
+
+table {
+	background-color: white;
+}
+
+td {
+	padding: 10px;
+}
+
+#red {
+	background-color: lightcoral;
+}
