@@ -11,8 +11,13 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<h1>Your Online Bookshop</h1>
-	<hr><br>
+<div id="navbar">
+	<a href="/ebookshop/eshop" id="navbar-icon"><img src="/ebookshop/images/book.png" 
+		alt="book icon">Online Bookshop</a>
+</div>
+<div class="center-container">
+	<h2>Shopping Cart</h2>
+	<br>
 	
 <% // Scriplet 1: check whether the booklist exists in the session.
 	Vector<String> booklist = 
@@ -50,12 +55,12 @@
 	if (shoplist != null && shoplist.size() > 0) {
 %>
 	<!-- Displays cart contents in a table -->
-	<table border="1">
+	<table>
 	<tr>
-		<td>Title</td>
-		<td>Price</td>
-		<td>Quantity</td>
-		<td></td>
+		<th>Title</th>
+		<th>Price</th>
+		<th>Quantity</th>
+		<th></th>
 	</tr>
 	
 <% // Scriplet 4: Loop through the shopping cart and display each book's details.
@@ -72,7 +77,7 @@
 			<td><%=aBook.getTitle()%></td> <!-- Display the title of the book -->
 			<td align="right">$<%=aBook.getPrice()%></td> <!-- Display the price of the book -->
 			<td align="right"><%=aBook.getQuantity()%></td> <!-- Display the quantity of the book in the cart -->
-			<td><input  type="Submit" id="red" value="Remove from Cart"></td> <!-- Button to remove the book from cart -->
+			<td><input  type="Submit" class="red" value="Remove from Cart"></td> <!-- Button to remove the book from cart -->
 		</form>
 	</tr>
 	
@@ -83,15 +88,23 @@
 	</table>
 	<br>
 	
-	<!-- Form to checkout the items in the cart -->
-	<form name="checkoutForm" action="eshop" method="POST">
-		<input type="hidden" name="do_this" value="checkout"> <!-- Hidden field to specify 'checkout' action -->
-		<input type="submit" value="Checkout"> <!-- Button to proceed to checkout -->
-	</form>
+	<div id="checkout-clear-container">
+		<!-- Form to checkout the items in the cart -->
+		<form name="checkoutForm" action="eshop" method="POST">
+			<input type="hidden" name="do_this" value="checkout"> <!-- Hidden field to specify 'checkout' action -->
+			<input type="submit" class="green" value="Checkout"> <!-- Button to proceed to checkout -->
+		</form>
+		
+		<form name="removeAllForm" action="eshop" method="POST">
+			<input type="hidden" name="do_this" value="removeAll"> <!-- Hidden field to specify 'checkout' action -->
+			<input type="submit" class="red" value="Clear Cart"> <!-- Button to proceed to checkout -->
+		</form>
+	</div>
 	
 <%
 		} // if (shoplist..
 	} // if (booklist..else..	
 %>
+</div>
 </body>
 </html>

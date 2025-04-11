@@ -2,6 +2,8 @@ package ebookshop;
 
 // Imported necessary libraries for handling requests, sessions, and forward operations
 import java.util.Vector;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.ServletConfig;
@@ -104,27 +106,40 @@ public class ShoppingServlet extends HttpServlet {
 		} else {
 			// If "do_this" is not null, perform actions related to either checkout or manipulating the cart.
 			if (do_this.equals("checkout")) {
-				// Initialize variables to store the total amount (dollars) and the number of books.
-				float dollars = 0;
-				int books = 0;
 				
-				// Loop through the items in the shopping cart and calculate the total cost and quantity.
-				for (Book aBook : shoplist) {
-					float price = aBook.getPrice();
-					int qty = aBook.getQuantity();
-					dollars += price * qty;
-					books += qty;
-				}
+				// Check if the cart is null before proceeding.
+				if (shoplist == null || shoplist.isEmpty()) {
+					// Redirect to the shopping page if the cart is empty or null
+					res.sendRedirect("/ebookshop/eshop");
+					
+				} else {
 				
-				// Concatenating variable dollars (float) and books (int) with an empty string 
-				// forces Java to treat it as a string. Then, store them as request attributes.
-				req.setAttribute("dollars", dollars + "");
-				req.setAttribute("books", books + "");
+					// Initialize variables to store the total amount (dollars) and the number of books.
+					float dollars = 0;
+					int books = 0;
+					
+					// Loop through the items in the shopping cart and calculate the total cost and quantity.
+					for (Book aBook : shoplist) {
+						float price = aBook.getPrice();
+						int qty = aBook.getQuantity();
+						dollars += price * qty;
+						books += qty;
+					}
+					
+					// Precise Rounding for the total
+					BigDecimal bD = new BigDecimal(Float.toString(dollars));
+					bD = bD.setScale(2, RoundingMode.HALF_UP);
 				
-				// Forward the request to the Checkout page.
-				ServletContext sc = req.getSession().getServletContext();
-				RequestDispatcher rd = sc.getRequestDispatcher("/Checkout.jsp");
-				rd.forward(req, res);
+					// Concatenating variable books (int) with an empty string 
+					// forces Java to treat it as a string. Then, store them as request attributes.
+					req.setAttribute("dollars", bD.toPlainString());
+					req.setAttribute("books", books + "");
+					
+					// Forward the request to the Checkout page.
+					ServletContext sc = req.getSession().getServletContext();
+					RequestDispatcher rd = sc.getRequestDispatcher("/Checkout.jsp");
+					rd.forward(req, res);
+				} // if (shoplist == null .. else
 		
 			} // if (..checkout..
 			
@@ -133,8 +148,16 @@ public class ShoppingServlet extends HttpServlet {
 				if (do_this.equals("remove")) {
 					// Retrieve the position (index) of the book to be removed.
 					String pos = req.getParameter("position");
-					// Remove the book from the shopping cart at the specified index.
-					shoplist.removeElementAt(Integer.parseInt(pos));
+					
+					// prevents crashes when user refreshes page after removing item (Validates index)
+					if (!shoplist.isEmpty() && Integer.parseInt(pos) >= 0 && Integer.parseInt(pos) < shoplist.size()) {
+						// Remove the book from the shopping cart at the specified index.
+						shoplist.removeElementAt(Integer.parseInt(pos));
+					}
+				}
+				else if (do_this.equals("removeAll")) {
+					// Remove all the books from the shopping cart.
+					shoplist.clear();
 				}
 				else if (do_this.equals("add")) {
 					// Flag to check if the book already exists in the cart.
