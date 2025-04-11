@@ -9,13 +9,19 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<h1>Your Online BookShop - Checkout</h1>
-	<hr><br>
-	<table border="1">
+<div id="navbar">
+	<a href="/ebookshop/eshop" id="navbar-icon"><img src="/ebookshop/images/book.png" 
+		alt="book icon">Online Bookshop</a>
+</div>
+<div class="center-container">
+	<h2>Thank you for your order!</h2>
+	<h2>Order Summary</h2>
+	<br>
+	<table>
 		<tr>
-			<td>Title</td>
-			<td align="right">Price</td>
-			<td align="right">Quantity</td>
+			<th>Title</th>
+			<th align="right">Price</th>
+			<th align="right">Quantity</th>
 		</tr>
 		
 <%
@@ -34,20 +40,23 @@
 		</tr>
 		
 <%
-		}
+	}
 	// End the session to clear the cart after checkout is complete
 	session.invalidate();
+	
 %>
 
 		<tr>
 			<!-- Display the totals row with overall price and quantity -->
-			<td>TOTALS</td>
-			<td align="right"><%=(String)request.getAttribute("dollars")%></td>
-			<td align="right"><%=(String)request.getAttribute("books")%></td>
+			<td id="totals">TOTALS</td>
+			<td id="totals" align="right">$<%=(String)request.getAttribute("dollars")%></td>
+			<td id="totals" align="right"><%=(String)request.getAttribute("books")%></td>
 		</tr>
+		
 	</table>
 	<br>
 	<!-- Link to return to the shopping page -->
 	<a href="/ebookshop/eshop">Buy more!</a>
+</div>
 </body>
 </html>
