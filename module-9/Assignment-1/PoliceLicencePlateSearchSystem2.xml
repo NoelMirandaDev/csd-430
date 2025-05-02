@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="style4PLPSS.css"?>
+<licensePlate number="2Fast2Furious"
+			  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			  xmlns="http://www.mockpolicewebsite.com/PLPSS"
+			  xsi:schemaLocation="http://www.mockpolicewebsite.com/PLPSS PLPSS.xsd">	  
+<!--
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" :
+    - This declares the XML Schema Instance namespace (xsi), which is needed to use attributes like xsi:schemaLocation 
+    in the XML document.
+    
+    xmlns="http://www.mockpolicewebsite.com/PLPSS" :
+    - This associates the XML document with the "http://www.mockpolicewebsite.com/PLPSS" namespace.
+    - This ensures the elements in this XML are validated according to the schema that has the same namespace.
+
+    xsi:schemaLocation="http://www.mockpolicewebsite.com/PLPSS PLPSS.xsd" :
+    - This attribute tells the XML parser where to find the XML Schema document for validation.
+    - The first part (`http://www.mockpolicewebsite.com/PLPSS`) is the target namespace for the schema.
+    - The second part (`PLPSS.xsd`) is the location of the XSD file that defines the validation rules for this XML document.
+    -->
+	<owner activeWarrant="yes">
+		<ownerName>
+			<first>John</first>
+			<last>Doe</last>
+		</ownerName>
+		
+		<address>
+			<street>0000 N Somewhere</street>
+			<unitIdentifier>Apt. 2</unitIdentifier>
+			<city>Chicago</city>
+			<state>Illinois</state>
+			<zipcode>60634</zipcode>
+		</address>
+	
+		<vehicle vin="1HGCM82633A004352" status="stolen">
+			<make>Toyota</make>
+			<model>
+				<modelName>Corolla</modelName>
+				<year>2006</year>
+			</model>
+			<color>
+				<colorName>Blue</colorName>
+				<code>#0000FF</code>
+			</color>
+		</vehicle>
+		
+		<criminalRecords>
+			<record>
+				<offense>Speeding</offense>
+				<date>2023-06-15</date>
+				<location>Springfield</location>
+			</record>
+			
+			<record>
+				<offense>Grand Theft Auto</offense>
+				<date>2022-11-03</date>
+				<location>Chicago</location>
+			</record>
+		</criminalRecords>
+	</owner>
+</licensePlate>

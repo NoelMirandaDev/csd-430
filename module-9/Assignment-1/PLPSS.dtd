@@ -1,0 +1,35 @@
+<!ELEMENT licensePlate (owner)>
+<!ATTLIST licensePlate number CDATA #REQUIRED>
+
+<!ELEMENT owner (ownerName, address, vehicle, criminalRecords)>
+<!ATTLIST owner 
+	activeWarrant CDATA #REQUIRED>
+
+<!ELEMENT ownerName (first, last)>
+<!ELEMENT first (#PCDATA)>
+<!ELEMENT last (#PCDATA)>
+
+<!ELEMENT address (street, unitIdentifier, city, state, zipcode)>
+	<!ELEMENT street (#PCDATA)>
+	<!ELEMENT unitIdentifier (#PCDATA)>
+	<!ELEMENT city (#PCDATA)>
+	<!ELEMENT state (#PCDATA)>
+	<!ELEMENT zipcode (#PCDATA)>
+
+<!ELEMENT vehicle (make, model, color)>
+<!ATTLIST vehicle 
+	vin CDATA #REQUIRED
+	status CDATA #REQUIRED>
+<!ELEMENT make (#PCDATA)>
+<!ELEMENT model (modelName, year)>
+	<!ELEMENT modelName (#PCDATA)>
+	<!ELEMENT year (#PCDATA)>
+<!ELEMENT color (colorName, code)>
+	<!ELEMENT colorName (#PCDATA)>
+	<!ELEMENT code (#PCDATA)>
+	
+<!ELEMENT criminalRecords (record*)>
+<!ELEMENT record (offense, date, location)>
+	<!ELEMENT offense (#PCDATA)>
+	<!ELEMENT date (#PCDATA)>
+	<!ELEMENT location (#PCDATA)>

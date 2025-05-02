@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		   targetNamespace="http://www.mockpolicewebsite.com/PLPSS"
+		   xmlns="http://www.mockpolicewebsite.com/PLPSS"
+		   elementFormDefault="qualified">
+ <!--
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" :
+    - This declares the XML Schema namespace (xs), which is required to use XML Schema-related elements like xs:schema, 
+    xs:element, xs:complexType, etc.
+
+    targetNamespace="http://www.mockpolicewebsite.com/PLPSS" :
+    - Specifies the target namespace for this schema. It ensures that elements defined in this schema belong to the 
+    "http://www.mockpolicewebsite.com/PLPSS" namespace.
+
+    xmlns="http://www.mockpolicewebsite.com/PLPSS" :
+    - This sets the default namespace for the schema. It means that all elements defined in this schema will be associated 
+    with the "http://www.mockpolicewebsite.com/PLPSS" namespace, unless otherwise specified.
+
+    elementFormDefault="qualified" :
+    - Specifies that all elements in this schema must be *qualified* with the target namespace in the XML document.
+    - In other words, the XML elements must explicitly include the namespace (e.g., <licensePlate>) to be valid according to this schema.
+-->
+
+	<!-- Root Element -->
+	<xs:element name="licensePlate">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="owner" type="OwnerType"/>
+			</xs:sequence>
+			<xs:attribute name="number" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- Owner Info -->
+	<xs:complexType name="OwnerType">
+		<xs:sequence>
+			<xs:element name="ownerName" type="OwnerNameType"/>
+			<xs:element name="address" type="AddressType"/>
+			<xs:element name="vehicle" type="VehicleType"/>
+			<xs:element name="criminalRecords" type="CriminalRecordsType"/>
+		</xs:sequence>
+		<xs:attribute name="activeWarrant" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="yes"/>
+					<xs:enumeration value="no"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+
+	<!-- Owner Name -->
+	<xs:complexType name="OwnerNameType">
+		<xs:sequence>
+			<xs:element name="first" type="xs:string"/>
+			<xs:element name="last" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- Address -->
+	<xs:complexType name="AddressType">
+		<xs:sequence>
+			<xs:element name="street" type="xs:string"/>
+			<xs:element name="unitIdentifier" type="xs:string" minOccurs="0"/>
+			<xs:element name="city" type="xs:string"/>
+			<xs:element name="state" type="xs:string"/>
+			<xs:element name="zipcode" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- Vehicle info -->
+	<xs:complexType name="VehicleType">
+		<xs:sequence>
+			<xs:element name="make" type="xs:string"/>
+			<xs:element name="model" type="ModelType"/>
+			<xs:element name="color" type="ColorType"/>
+		</xs:sequence>
+		<xs:attribute name="vin" type="xs:string" use="required"/>
+		<xs:attribute name="status" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="stolen"/>
+					<xs:enumeration value="clean"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	
+	<!-- Vehicle Model info -->
+	<xs:complexType name="ModelType">
+		<xs:sequence>
+			<xs:element name="modelName" type="xs:string"/>
+			<xs:element name="year" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- Vehicle Color info -->
+	<xs:complexType name="ColorType">
+		<xs:sequence>
+			<xs:element name="colorName" type="xs:string"/>
+			<xs:element name="code" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- Criminal Records -->
+	<xs:complexType name="CriminalRecordsType">
+		<xs:sequence>
+			<xs:element name="record" type="RecordType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- Record info -->
+	<xs:complexType name="RecordType">
+		<xs:sequence>
+			<xs:element name="offense" type="xs:string"/>
+			<xs:element name="date" type="xs:date"/>
+			<xs:element name="location" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

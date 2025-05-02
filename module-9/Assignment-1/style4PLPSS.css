@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+licensePlate {
+	display: block;
+	font-family: Arial;
+	background-color: #f2f2f2;
+	padding: 10px;
+}
+
+owner {
+	display: block;
+	margin-top: 10px;
+	border: 2px solid black;
+	padding: 10px;
+	background-color: lightblue;
+}
+
+ownerName, address, vehicle, criminalRecords {
+	display: block;
+	margin-bottom: 10px;
+	border: 1px solid black;
+	padding: 10px;
+}
+
+record {
+	display: block;
+	margin-bottom: 10px;
+	border: 1px dotted black;
+	padding: 5px;
+	
+}
+
+first, last, street, unitIdentifier, city, state, zipcode,
+make, model, color, offense, date, location {
+	display: block;
+	margin-left: 10px;
+}
