@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE licensePlate SYSTEM "PLPSS.dtd">
+<!-- 
+  In Eclipse (development), a relative path is needed so the XML validator works (as is right now):
+  <!DOCTYPE licensePlate SYSTEM "PLPSS.dtd">
+
+  In production, (when running on server) this must be replaced with the full URL:
+  <!DOCTYPE licensePlate SYSTEM "http://localhost:8080/PoliceLicensePlateSearch/PLPSS.dtd">
+-->
+<licensePlate number="2Fast2Furious">
+	<owner activeWarrant="Yes">
+		<ownerName>
+			<first>John</first>
+			<last>Doe</last>
+		</ownerName>
+		
+		<address>
+			<street>0000 N Somewhere</street>
+			<unitIdentifier>Apt. 2</unitIdentifier>
+			<city>Chicago</city>
+			<state>Illinois</state>
+			<zipcode>60634</zipcode>
+		</address>
+	
+		<vehicle vin="1HGCM82633A004352" status="stolen">
+			<make>Toyota</make>
+			<model>
+				<modelName>Corolla</modelName>
+				<year>2006</year>
+			</model>
+			<color>
+				<colorName>Blue</colorName>
+				<code>#0000FF</code>
+			</color>
+		</vehicle>
+		
+		<criminalRecords>
+			<record>
+				<offense>Speeding</offense>
+				<date>2023-06-15</date>
+				<location>Springfield</location>
+			</record>
+			
+			<record>
+				<offense>Grand Theft Auto</offense>
+				<date>2022-11-03</date>
+				<location>Chicago</location>
+			</record>
+		</criminalRecords>
+	</owner>
+</licensePlate>
