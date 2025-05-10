@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
+	  
+<ui:composition template="/template.xhtml">
+	<ui:define name="title">Course Feedback Survey</ui:define>
+	
+	<ui:define name="heading">Course Survey</ui:define>
+	
+	<ui:define name="content">
+		<h:form>
+	
+			<h:outputLabel for="studentID" value="Student ID: " />
+			<h:inputText id="studentID" value="#{participant.studentID}" required="true" 
+						 requiredMessage=" Student ID is required.">
+				<f:validateRegex pattern="\d{5,10}"/>
+			</h:inputText>
+			<h:message for="studentID" style="color:red" /> 
+			<br/><br/>
+	        
+	        <h:outputLabel for="course" value="Course: " />
+	        <h:inputText id="course" value="#{participant.course}" required="true" 
+	        			 requiredMessage=" Course is required.">
+	        	<f:validateRegex pattern="^[a-zA-Z0-9-\s]+$"/>
+	        </h:inputText>
+	        <h:message for="course" style="color:red"/>
+	        <br/><br/>
+	        
+	        <h:outputLabel for="rating" value="How would you rate this course (1-10): "/>
+	        <h:selectOneMenu id="rating" value="#{participant.rating}">
+	        	<f:selectItem itemLabel="-- Select Rating --" itemValue="0" noSelectionOption="true"/>
+	        	<f:selectItems value="#{participant.ratingOptions}"/>
+	        	<f:validateLongRange minimum="1" maximum="10"/>
+	        </h:selectOneMenu> 
+	        <br/>
+	        <h:message for="rating" style="color:red"/>
+	        <br/><br/>
+	        
+	        <h:outputLabel for="feedBack" value="Do you have any feedback regarding the course (4-800 characters): "/>
+	        <h:inputTextarea id="feedBack" value="#{participant.feedBack}">
+	        	<f:validateLength minimum="4" maximum="800"/>
+	        </h:inputTextarea>
+	        <h:message for="feedBack" style="color:red"/>
+	        <br/><br/>
+			
+			<h:commandButton value="Submit" action="#{participant.dbInsert}"/>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
