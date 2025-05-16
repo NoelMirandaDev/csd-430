@@ -1,0 +1,112 @@
+@charset "UTF-8";
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1A1A2E;
+    color: #E0DCDC;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+h2, h3 {
+    color: #FFC72C;
+    margin-bottom: 20px;
+}
+
+form {
+    background-color: #2E2E4D;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0 2px 8px rgba(255, 199, 44, 0.5);
+    margin: 0 auto 30px auto;
+    text-align: left;
+    border: 1px solid #5B2E91;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="email"],
+select {
+    width: 100%;
+    padding: 8px;
+    margin: 6px 0 12px 0;
+    border: 1px solid #555577;
+    border-radius: 4px;
+    background-color: #3B3B5C;
+    color: #E0DCDC;
+    box-sizing: border-box;
+}
+
+input[type="date"]::placeholder {
+    color: #9999AA;
+}
+
+input[type="submit"] {
+    background-color: #5B2E91;
+    color: #FFC72C;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 180px;
+    margin-top: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: bold;
+}
+
+input[type="submit"]:hover {
+    background-color: #FFC72C;
+    color: #5B2E91;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 30px auto;
+    box-shadow: 0 2px 8px rgba(255, 199, 44, 0.5);
+    border: 1px solid #5B2E91;
+    background-color: #2E2E4D;
+    color: #E0DCDC;
+}
+
+table, th, td {
+    border: 1px solid #5B2E91;
+}
+
+th {
+    background-color: #FFC72C;
+    padding: 12px;
+    text-align: left;
+    color: #1A1A2E;
+    font-weight: bold;
+}
+
+td {
+    padding: 10px 12px;
+    color: #E0DCDC;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #3B3B5C;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #2E2E4D;
+}
+
+.sadFaceContainer {
+	width: 100%;
+	text-align: center;
+}
+
+.errorMessage {
+  text-align: center;
+  }

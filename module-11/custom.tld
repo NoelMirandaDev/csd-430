@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+            				http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+        version="2.1">
+    
+    <tlib-version>1.0</tlib-version>
+    <short-name>db</short-name>
+    <uri>http://module11.edu/tags</uri>
+
+    <tag>
+        <name>createTable</name>
+        <tag-class>tags.CreateTableTag</tag-class>
+        <body-content>empty</body-content>
+    </tag>
+    
+    <tag>
+    	<name>insertApplicant</name>
+    	<tag-class>tags.InsertApplicantTag</tag-class>
+    	<body-content>empty</body-content>
+    	
+    	<attribute>
+    		<name>applicant</name>
+    		<required>true</required>
+    		<rtexprvalue>true</rtexprvalue>
+    	</attribute>
+    </tag>
+    
+    <tag>
+    	<name>listApplicants</name>
+    	<tag-class>tags.ListApplicantsTag</tag-class>
+    	<body-content>empty</body-content>
+    </tag>
+    
+</taglib>
